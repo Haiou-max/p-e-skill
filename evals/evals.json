@@ -1,0 +1,88 @@
+{
+  "skill_name": "image_to_excel_product_parser",
+  "description": "测试从商品图片中提取信息并生成 Excel 表格的完整工作流",
+  "evals": [
+    {
+      "id": 1,
+      "name": "phase1-sample-confirmation",
+      "description": "第一阶段：样本确认（AIM-1342）",
+      "phase": "phase-1",
+      "prompt": "我有一张商品图片，图片中显示了三款鞋子和一个信息表。请根据这张图片提取以下信息：货号、颜色、尺码、单价、箱数、内装。我根据图片的信息表整理的数据是：\n\n货号：AIM-1342\n颜色：3色\n尺码：26-31\n单价：21\n箱数：5\n内装：60\n\n请从图片中识别出这些信息，然后与我提供的说明进行核对。",
+      "files": ["/Users/wangxinlong/Desktop/IMG_1834.JPG"],
+      "expected_output": "✓ 从图片中识别到完整的信息表\n✓ 与用户说明完全一致\n✓ 规则已确认，可进入第二阶段",
+      "assertions": [
+        {
+          "id": "a1",
+          "name": "识别货号准确性",
+          "description": "能否正确识别货号 AIM-1342"
+        },
+        {
+          "id": "a2",
+          "name": "识别颜色准确性",
+          "description": "能否正确识别颜色 3色"
+        },
+        {
+          "id": "a3",
+          "name": "识别尺码准确性",
+          "description": "能否正确识别尺码范围 26-31"
+        },
+        {
+          "id": "a4",
+          "name": "识别价格准确性",
+          "description": "能否正确识别单价 21"
+        },
+        {
+          "id": "a5",
+          "name": "识别箱数准确性",
+          "description": "能否正确识别箱数 5"
+        },
+        {
+          "id": "a6",
+          "name": "识别内装准确性",
+          "description": "能否正确识别内装 60"
+        },
+        {
+          "id": "a7",
+          "name": "核对完成性",
+          "description": "输出中是否明确说明了与用户说明的核对结果"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "phase2-batch-processing",
+      "description": "第二阶段：批量处理（需要 2-3 张格式相同的图片）",
+      "phase": "phase-2",
+      "prompt": "现在请根据第一阶段确认的规则，处理这些商品图片。对每张图片进行信息提取，然后生成一个带有嵌入图片的 Excel 表格。",
+      "files": ["待提供"],
+      "expected_output": "生成 product_list.xlsx，包含所有商品信息和嵌入的原图",
+      "assertions": [
+        {
+          "id": "b1",
+          "name": "Excel 生成成功",
+          "description": "是否成功生成 product_list.xlsx 文件"
+        },
+        {
+          "id": "b2",
+          "name": "表头完整性",
+          "description": "Excel 表头是否包含所有必需的列"
+        },
+        {
+          "id": "b3",
+          "name": "图片嵌入成功",
+          "description": "是否成功嵌入原图到 Excel 单元格中"
+        },
+        {
+          "id": "b4",
+          "name": "数据准确性",
+          "description": "提取的数据是否准确对应原图信息"
+        },
+        {
+          "id": "b5",
+          "name": "格式规范性",
+          "description": "Excel 格式是否规范（列宽、对齐、边框等）"
+        }
+      ]
+    }
+  ]
+}
